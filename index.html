@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr. Vivek Jadhav – Consultant Neurosurgeon</title>
+
+<!-- SheetJS for optional Excel import feature -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+<script>
+// ─── TESTIMONIALS DATA ─────────────────────────────────────────
+const TESTIMONIALS_DATA = [
+  {
+    id: 1,
+    patient_name: "Rajesh Sharma",
+    initials: "RS",
+    condition: "Lumbar Disc Surgery",
+    rating: 5,
+    review: "Dr. Mehta's expertise gave me my life back. After years of failed conservative treatments, his minimally invasive approach resolved my chronic back pain within weeks of surgery. The entire team was compassionate and professional.",
+    surgery_year: 2024
+  },
+  {
+    id: 2,
+    patient_name: "Priya Menon",
+    initials: "PM",
+    condition: "Brain Tumour Resection",
+    rating: 5,
+    review: "When I was diagnosed with a brain tumour, I was terrified. Dr. Mehta explained every step with clarity and compassion. The surgery was successful and I am now fully recovered and back to my normal life.",
+    surgery_year: 2023
+  },
+  {
+    id: 3,
+    patient_name: "Anil Kumar",
+    initials: "AK",
+    condition: "Cerebrovascular Emergency",
+    rating: 5,
+    review: "My father had a ruptured aneurysm and Dr. Mehta performed emergency surgery in the middle of the night. His skill and calm under pressure is truly unmatched. Our family is forever grateful for his dedication.",
+    surgery_year: 2024
+  },
+  {
+    id: 4,
+    patient_name: "Sunita Patel",
+    initials: "SP",
+    condition: "Cervical Spine Surgery",
+    rating: 5,
+    review: "Suffering from cervical myelopathy for three years, I finally found relief thanks to Dr. Mehta's precise surgical technique. I can now live a completely normal life. I highly recommend him to anyone with spinal issues.",
+    surgery_year: 2023
+  },
+  {
+    id: 5,
+    patient_name: "Mohammed Raza",
+    initials: "MR",
+    condition: "Deep Brain Stimulation",
+    rating: 5,
+    review: "DBS changed my life completely. Dr. Mehta's expertise in functional neurosurgery helped control my Parkinson's tremors dramatically. His aftercare programme and the follow-up support from his team has been exceptional.",
+    surgery_year: 2024
+  },
+  {
+    id: 6,
+    patient_name: "Kavitha Nair",
+    initials: "KN",
+    condition: "Epilepsy Surgery",
+    rating: 4,
+    review: "After many medication failures, Dr. Mehta performed a temporal lobectomy. I have been seizure-free for 18 months now. His team's support throughout the entire journey — from diagnosis to recovery — was outstanding.",
+    surgery_year: 2023
+  }
+];
+
+// ─── BLOG POSTS DATA ────────────────────────────────────────────
+const BLOGS_DATA = [
+  {
+    id: 1,
+    title: "Awake Craniotomy: Why Consciousness During Brain Surgery Saves Lives",
+    category: "Brain Surgery",
+    tag_color: "brain",
+    excerpt: "Performing surgery on patients who are awake may sound alarming, but it is a gold-standard technique that protects critical brain functions like speech and motor control.",
+    content: `Awake craniotomy is a surgical procedure in which the patient is conscious during part of the operation. This allows surgeons to monitor brain function in real time while removing tumours near eloquent cortex — areas responsible for speech, movement, and sensation.
+
+During the procedure, the patient is kept comfortable with sedation during opening and closing, but awakened when the surgeon needs feedback. The patient performs tasks like counting, moving fingers, or naming objects. If the surgeon detects a functional deficit, they can adjust the resection margin accordingly.
+
+This technique has dramatically improved outcomes in patients with tumours in or near language and motor areas. Studies show that awake craniotomy leads to greater tumour removal with fewer neurological deficits compared to surgery under general anaesthesia.
+
+At our centre, patients are thoroughly prepared over multiple sessions before the procedure. A dedicated neuropsychologist, anaesthesiologist, and nursing team work together to ensure the patient is comfortable and cooperative throughout.
+
+Who is a candidate?
+• Patients with tumours near speech (Broca's or Wernicke's areas) or motor cortex
+• Those with gliomas in the dominant hemisphere
+• Patients who are psychologically prepared and cooperative
+• Adults with no severe anxiety disorders
+
+The results speak for themselves: our series of 180 awake craniotomies has demonstrated a gross total resection rate of 84% with a permanent neurological deficit rate of less than 4%.`,
+    author: "Dr. Vivek Jadhav",
+    date: "March 15, 2025",
+    read_minutes: 6,
+    published: true
+  },
+  {
+    id: 2,
+    title: "Minimally Invasive Spine Surgery: What to Expect Before and After",
+    category: "Spine",
+    tag_color: "spine",
+    excerpt: "A complete guide to keyhole spinal procedures — smaller incisions, faster recovery, and outcomes comparable to open surgery for the right candidates.",
+    content: `Minimally invasive spine surgery (MISS) uses specialised instruments and real-time X-ray guidance to perform spinal procedures through tiny incisions — often less than 2 cm. This contrasts with traditional open surgery, which may require a 10–15 cm incision and significant muscle retraction.
+
+Common procedures performed minimally invasively:
+• Microdiscectomy for herniated discs
+• Transforaminal lumbar interbody fusion (TLIF)
+• Lateral lumbar interbody fusion (LLIF)
+• Percutaneous pedicle screw fixation
+• Vertebroplasty and kyphoplasty for compression fractures
+
+Benefits of MISS include reduced blood loss, shorter hospital stay (often 1–2 days versus 4–5 for open surgery), faster return to activity, and lower risk of post-operative infection.
+
+Before Surgery
+You will undergo MRI, CT scan, and clinical assessment. Physiotherapy is often started pre-operatively to strengthen core muscles. Blood thinners must be stopped 5–7 days before the procedure.
+
+After Surgery
+Most patients walk within 24 hours of surgery. A structured physiotherapy programme begins within the first week. Return to desk work is typically possible in 2–4 weeks; manual labour in 6–8 weeks.
+
+However, MISS is not suitable for all patients. Complex deformity, multilevel disease, or prior extensive surgery may necessitate an open approach. A thorough evaluation is essential before deciding on technique.`,
+    author: "Dr. Vivek Jadhav",
+    date: "February 22, 2025",
+    read_minutes: 8,
+    published: true
+  },
+  {
+    id: 3,
+    title: "Deep Brain Stimulation in 2025: Advances in Parkinson's Treatment",
+    category: "Research",
+    tag_color: "research",
+    excerpt: "New closed-loop DBS systems are transforming the management of movement disorders with real-time adaptive therapy that responds to the patient's own brain signals.",
+    content: `Deep brain stimulation (DBS) has been a cornerstone of Parkinson's disease treatment for over two decades. By delivering electrical pulses to specific brain targets — primarily the subthalamic nucleus or globus pallidus — DBS can dramatically reduce tremor, rigidity, and bradykinesia.
+
+The latest generation of DBS systems, approved in 2024–2025, feature closed-loop or adaptive technology. Unlike traditional DBS, which delivers constant stimulation, these systems continuously record local field potentials from the brain and adjust stimulation parameters in real time based on the patient's current neurological state.
+
+Key advances in 2025:
+• Adaptive (closed-loop) DBS with real-time biomarker sensing
+• Directional leads allowing more targeted stimulation
+• Rechargeable batteries lasting 15+ years
+• Remote programming via telemedicine platforms
+• AI-assisted parameter optimisation
+
+In clinical trials, adaptive DBS has demonstrated superior tremor control with up to 30% less electrical energy consumption, translating to longer battery life and fewer replacement surgeries. Patients also report more natural movement and fewer stimulation-related side effects.
+
+Patient Selection
+The ideal DBS candidate has a confirmed Parkinson's diagnosis for at least 4 years, good response to levodopa (except for tremor), troublesome motor fluctuations or dyskinesias, and no significant cognitive impairment or active psychiatric illness.
+
+At our centre, we have implanted over 85 DBS systems with a complication rate well below the national average.`,
+    author: "Dr. Vivek Jadhav",
+    date: "January 10, 2025",
+    read_minutes: 5,
+    published: true
+  },
+  {
+    id: 4,
+    title: "Understanding Hydrocephalus: A Guide for Families",
+    category: "Paediatric",
+    tag_color: "paediatric",
+    excerpt: "Hydrocephalus — excess fluid in the brain — affects thousands of children in India each year. Here is what parents need to know about diagnosis, treatment, and long-term outlook.",
+    content: `Hydrocephalus occurs when cerebrospinal fluid (CSF) accumulates in the brain's ventricles, causing increased intracranial pressure. In children, it is most commonly caused by congenital abnormalities, intraventricular haemorrhage in premature infants, or post-infectious scarring.
+
+Signs and symptoms in infants:
+• Rapid head growth (head circumference crossing centile lines)
+• Bulging fontanelle (soft spot)
+• Downward eye deviation ('sunset sign')
+• Irritability and poor feeding
+• Prominent scalp veins
+
+In older children:
+• Headaches (especially in the morning)
+• Vomiting
+• Vision problems or double vision
+• Declining school performance
+• Difficulty walking or balance problems
+
+Treatment Options
+
+1. Ventriculoperitoneal (VP) Shunt
+A thin tube is placed to drain excess CSF from the ventricles to the abdominal cavity, where it is absorbed. Shunts are reliable but may require revision if they block or become infected.
+
+2. Endoscopic Third Ventriculostomy (ETV)
+A small hole is made in the floor of the third ventricle, allowing CSF to bypass the obstruction. This is our preferred approach for suitable patients as it avoids a permanent implant. Success rates are highest when combined with choroid plexus cauterisation (ETV-CPC) in infants.
+
+Long-Term Outlook
+With timely treatment, most children with hydrocephalus can lead normal, productive lives. Regular follow-up with a neurosurgeon and developmental paediatrician is essential to monitor shunt function and developmental milestones.`,
+    author: "Dr. Vivek Jadhav",
+    date: "December 5, 2024",
+    read_minutes: 7,
+    published: true
+  }
+];
+</script>
+
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="nav-brand">
+    Dr. Vivek Jadhav
+    <small>MCh Neurosurgery · FRCS (SN)</small>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book Consultation</a>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────────── -->
+<section class="hero" id="about">
+  <div>
+    <div class="hero-eyebrow"><span>Senior Consultant Neurosurgeon · Nashik</span></div>
+    <p class="hero-sub">Precision · Compassion · Excellence</p>
+    <h1>Restoring Lives Through<br><em>Advanced</em> Neurosurgery</h1>
+    <p class="hero-desc">With over 18 years specialising in complex cranial and spinal surgery, I deliver exceptional outcomes through cutting-edge minimally invasive techniques and deeply personalised patient care at Apollo Hospital, Nashik.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-gold">Book Consultation</a>
+      <a href="#expertise" class="btn btn-outline-white">View Expertise</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">400+</span><span class="stat-label">Surgeries Performed</span></div>
+      <div><span class="stat-num">10</span><span class="stat-label">Years Experience</span></div>
+      <div><span class="stat-num">97%</span><span class="stat-label">Success Rate</span></div>
+      <div><span class="stat-num">8</span><span class="stat-label">Publications</span></div>
+    </div>
+  </div>
+  <div class="profile-card">
+    <div class="profile-avatar">AM</div>
+    <div class="profile-name">Dr. Vivek Jadhav</div>
+    <div class="profile-creds">MCh Neurosurgery · FRCS (SN) · DNB</div>
+    <div class="profile-divider"></div>
+    <div class="profile-badges">
+      <span class="badge">AIIMS New Delhi</span>
+      <span class="badge">NIMHANS Fellowship</span>
+      <span class="badge">WFNS Member</span>
+      <span class="badge">NSI Fellow</span>
+    </div>
+    <div class="avail-row"><div class="avail-dot"></div><span class="avail-text">Accepting new patients</span></div>
+  </div>
+</section>
+
+<!-- ── EXPERTISE ────────────────────────────────────────────────── -->
+<section class="section section-white" id="expertise">
+  <p class="section-tag">Areas of Expertise</p>
+  <h2 class="section-title">Surgical <em>Specialisations</em></h2>
+  <div class="divider"></div>
+  <p class="section-desc">Comprehensive neurosurgical care across cranial, spinal, and functional domains with the latest minimally invasive techniques.</p>
+  <div class="expertise-grid">
+    <div class="exp-card"><div class="exp-icon">🧠</div><div class="exp-title">Brain Tumour Surgery</div><p class="exp-desc">Awake craniotomy, stereotactic biopsy, and image-guided resection for benign and malignant intracranial neoplasms with maximal safe resection.</p></div>
+    <div class="exp-card"><div class="exp-icon">🦴</div><div class="exp-title">Complex Spine Surgery</div><p class="exp-desc">Minimally invasive spinal fusion, disc replacement, and deformity correction for cervical, thoracic, and lumbar conditions.</p></div>
+    <div class="exp-card"><div class="exp-icon">🩸</div><div class="exp-title">Cerebrovascular Surgery</div><p class="exp-desc">Microsurgical clipping of aneurysms, AVM resection, and carotid endarterectomy under advanced neuromonitoring.</p></div>
+    <div class="exp-card"><div class="exp-icon">⚡</div><div class="exp-title">Functional Neurosurgery</div><p class="exp-desc">Deep brain stimulation (DBS) for Parkinson's disease, epilepsy surgery, and neuromodulation for chronic pain.</p></div>
+    <div class="exp-card"><div class="exp-icon">👶</div><div class="exp-title">Paediatric Neurosurgery</div><p class="exp-desc">Specialised care for hydrocephalus, congenital malformations, and childhood brain tumours.</p></div>
+    <div class="exp-card"><div class="exp-icon">🎯</div><div class="exp-title">Neuro-Oncology</div><p class="exp-desc">Multidisciplinary approach to primary and metastatic brain tumours with oncology and radiation therapy teams.</p></div>
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ──────────────────────────────────────────────── -->
+<section class="section section-cream" id="credentials">
+  <div class="cred-layout">
+    <div>
+      <p class="section-tag">Education & Training</p>
+      <h2 class="section-title">Academic <em>Journey</em></h2>
+      <div class="divider"></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dots"><div class="tl-dot"></div><div class="tl-line"></div></div><div><div class="tl-year">2006 – 2009</div><div class="tl-title">MCh Neurosurgery</div><div class="tl-org">All India Institute of Medical Sciences (AIIMS), New Delhi</div></div></div>
+        <div class="tl-item"><div class="tl-dots"><div class="tl-dot"></div><div class="tl-line"></div></div><div><div class="tl-year">2010 – 2011</div><div class="tl-title">Fellowship – Cerebrovascular Surgery</div><div class="tl-org">NIMHANS, Bengaluru · Visiting Fellow, Johns Hopkins Hospital, USA</div></div></div>
+        <div class="tl-item"><div class="tl-dots"><div class="tl-dot"></div><div class="tl-line"></div></div><div><div class="tl-year">2011</div><div class="tl-title">FRCS (SN) – Surgical Neurology</div><div class="tl-org">Royal College of Surgeons of Edinburgh</div></div></div>
+        <div class="tl-item"><div class="tl-dots"><div class="tl-dot"></div></div><div><div class="tl-year">2012 – Present</div><div class="tl-title">Senior Consultant Neurosurgeon</div><div class="tl-org">Apollo Hospitals, Nashik</div></div></div>
+      </div>
+    </div>
+    <div>
+      <p class="section-tag">Research & Publications</p>
+      <h2 class="section-title">Selected <em>Publications</em></h2>
+      <div class="divider"></div>
+      <div class="publications">
+        <div class="pub-item"><div class="pub-title">Outcomes of Awake Craniotomy in Eloquent Cortex Glioma Resection: A 10-Year Institutional Review</div><div class="pub-journal">Journal of Neurosurgery · 2023 · IF 5.2</div></div>
+        <div class="pub-item"><div class="pub-title">Adaptive Deep Brain Stimulation vs Conventional DBS in Advanced Parkinson's Disease: Comparative Analysis</div><div class="pub-journal">Movement Disorders · 2024 · IF 8.6</div></div>
+        <div class="pub-item"><div class="pub-title">Endoscopic Third Ventriculostomy in Paediatric Hydrocephalus: Long-Term Success Rates in Indian Cohorts</div><div class="pub-journal">Child's Nervous System · 2022 · IF 1.9</div></div>
+        <div class="pub-item"><div class="pub-title">Minimally Invasive TLIF versus Open TLIF: A Prospective Randomised Controlled Trial</div><div class="pub-journal">Spine · 2021 · IF 3.0</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ─────────────────────────────────────────────── -->
+<section class="section section-white" id="testimonials">
+  <p class="section-tag">Patient Stories</p>
+  <h2 class="section-title">What Patients <em>Say</em></h2>
+  <div class="divider"></div>
+  <p class="section-desc">Real experiences from patients who have trusted us with their care. Update via the <strong style="color:var(--gold)">Admin Panel</strong> (bottom-right) to upload a new Excel file anytime.</p>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterT('all',this)">All Reviews</button>
+    <button class="filter-btn" onclick="filterT('brain',this)">Brain Surgery</button>
+    <button class="filter-btn" onclick="filterT('spine',this)">Spine</button>
+    <button class="filter-btn" onclick="filterT('other',this)">Other</button>
+  </div>
+  <div class="testi-grid" id="testi-grid"></div>
+</section>
+
+<!-- ── BLOG ─────────────────────────────────────────────────────── -->
+<section class="section section-cream" id="blog">
+  <p class="section-tag">Medical Insights</p>
+  <h2 class="section-title">From the <em>Blog</em></h2>
+  <div class="divider"></div>
+  <div class="blog-controls">
+    <p class="section-desc" style="margin:0">Knowledge on neurosurgical advances, patient education, and the latest research.</p>
+    <div class="blog-cats" id="blog-cats">
+      <button class="cat-btn active" onclick="filterB('all',this)">All Posts</button>
+    </div>
+  </div>
+  <div class="blog-grid" id="blog-grid"></div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────────────────────────────── -->
+<section class="section section-navy" id="contact">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <h2>Schedule a<br><em>Consultation</em></h2>
+      <p>I see patients at Apollo Hospitals, Navi Nashik. For emergencies, please contact the hospital's neurosurgery emergency line directly.</p>
+      <div class="contact-details">
+        <div class="c-row"><span class="c-icon">📍</span><div class="c-text"><span class="c-label">Location</span>Apollo Hospital, Nashik · Room 312<br>SNBT Hospital </div></div>
+        <div class="c-row"><span class="c-icon">📞</span><div class="c-text"><span class="c-label">Phone</span>+91 22 2626 7500</div></div>
+        <div class="c-row"><span class="c-icon">✉️</span><div class="c-text"><span class="c-label">Email</span>dr.vivek@neurocare.in</div></div>
+        <div class="c-row"><span class="c-icon">🕐</span><div class="c-text"><span class="c-label">OPD Hours</span>Mon, Wed, Fri: 9:00 AM – 1:00 PM<br>Tue, Thu: 3:00 PM – 6:00 PM</div></div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="submitForm(event)">
+      <div class="form-row2">
+        <div class="fg"><label>First Name</label><input type="text" placeholder="Amit" required /></div>
+        <div class="fg"><label>Last Name</label><input type="text" placeholder="Joshi" required /></div>
+      </div>
+      <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210" required /></div>
+      <div class="fg"><label>Email Address</label><input type="email" placeholder="amit@example.com" /></div>
+      <div class="fg">
+        <label>Reason for Visit</label>
+        <select required>
+          <option value="">— Select your condition —</option>
+          <option>Back / Neck Pain (Spine)</option>
+          <option>Brain Tumour</option>
+          <option>Cerebrovascular Issue (Aneurysm / AVM)</option>
+          <option>Epilepsy / Seizures</option>
+          <option>Head Injury / Trauma</option>
+          <option>Parkinson's Disease / Movement Disorder</option>
+          <option>Paediatric Concern</option>
+          <option>Second Opinion</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="fg"><label>Message</label><textarea placeholder="Briefly describe your symptoms…"></textarea></div>
+      <div class="form-ok" id="form-ok">✓ Your request has been sent. We will contact you within 24 hours.</div>
+      <button type="submit" class="btn btn-gold" style="align-self:flex-start;margin-top:0.5rem">Send Request</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-brand">Dr. Vivek Jadhav<small>MCh Neurosurgery · Apollo Hospitals, Nashik</small></div>
+  <span class="footer-copy">© 2025 Dr. Vivek Jadhav. All rights reserved.</span>
+  <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Disclaimer</a><a href="#">LinkedIn</a></div>
+</footer>
+
+<!-- ── BLOG MODAL ─────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="blog-modal" onclick="closeBlogModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-tag"></div>
+    <h2 class="modal-title" id="modal-title"></h2>
+    <div class="modal-meta" id="modal-meta"></div>
+    <div class="modal-hr"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ── ADMIN PANEL (bottom-right floating button) ─────────────────── -->
+<div class="admin-fab">
+  <button onclick="toggleAdmin()">⚙ Admin Panel</button>
+</div>
+<div class="admin-panel" id="admin-panel">
+  <div class="admin-title">📊 Update Data from Excel</div>
+
+  <div class="admin-section">
+    <span class="admin-label">Upload Testimonials (testimonials.xlsx)</span>
+    <div class="admin-upload">
+      <label>Choose File <input type="file" accept=".xlsx,.xls" onchange="uploadTestimonials(this)"></label>
+      <span class="admin-status" id="testi-status">Using built-in data</span>
+    </div>
+  </div>
+
+  <div class="admin-section">
+    <span class="admin-label">Upload Blog Posts (blogs.xlsx)</span>
+    <div class="admin-upload">
+      <label>Choose File <input type="file" accept=".xlsx,.xls" onchange="uploadBlogs(this)"></label>
+      <span class="admin-status" id="blog-status">Using built-in data</span>
+    </div>
+  </div>
+
+  <div class="admin-note">
+    ✅ Works by double-clicking the HTML file — no server needed!<br>
+    Upload your Excel file → page updates instantly.<br>
+    The Excel files must match the column format from this download.
+  </div>
+</div>
+
+<!-- ══ JAVASCRIPT ══════════════════════════════════════════════════ -->
+<script src="script.js" defer></script>
+
+</body>
+</html>
